@@ -1,7 +1,6 @@
 # backlog_slack_notice
 
-![システム構成図](./assets/JBUG_20240531_system_image.drawio.png)
-
+<img src="./assets/JBUG_20240531_system_image.drawio.png" width="600px"><br>
 上記構成での、BacklogからSlackへの通知のサンプルです
 
 ## 前提
@@ -13,37 +12,37 @@
 ## 1. SlackのIncoming Webhookの取得
 LambdaからSlackへの通知に必要なWebhookURLを取得する
 
-![slack_001](./assets/slack_001.png)
+<img src="./assets/slack_001.png" width="600px"><br>
 Slackのワークスペースのメニューを開き、「ツールと設定」->「アプリを管理する」を選択
 
-![slack_002](./assets/slack_002.png)
+<img src="./assets/slack_002.png" width="600px"><br>
 画面上部の検索ボックスに「incoming webhook」と入力し、incoming webhookのページへ遷移
 
-![slack_003](./assets/slack_003.png)
-「Slackに追加」を押下
+<img src="./assets/slack_003.png" height="400px"><br>
+「Slackに追加」を押下  
 
-![slack_004](./assets/slack_004.png)
+<img src="./assets/slack_004.png" width="600px"><br>
 通知先のチャンネルを選択し、「Incoming Webhookインテグレーションの追加」を押下  
 遷移先の画面の「Webhook URL」を控えておく
 
 ## 2. 関数の作成
-![lambda_001](./assets/lambda_001.png)
+<img src="./assets/lambda_001.png" width="600px"><br>
 関数名：任意  
 ランタイム：APIをPythonで実装した為、Pythonを選択
 
-![lambda_002](./assets/lambda_002.png)
+<img src="./assets/lambda_002.png" width="600px"><br>
 実行ロールは、既存のものがあればそれを使用  
 サンプルでは取り敢えず新ロールを作成
 
-![lambda_003](./assets/lambda_003.png)
+<img src="./assets/lambda_003.png" width="600px"><br>
 「関数URLを有効化」にチェックを入れてエンドポイントを作成  
 認証タイプはサンプルなので「NONE」にする  
 本運用するならIAM認証を入れたほうがよい
 
-![lambda_004](./assets/lambda_004.png)
+<img src="./assets/lambda_004.png" width="600px"><br>
 「関数の作成」を押下
 
-![lambda_005](./assets/lambda_005.png)
+<img src="./assets/lambda_005.png" width="600px"><br>
 関数の作成後、関数URLを控えておく
 
 ## 3. プログラムをコピー
@@ -87,10 +86,10 @@ webhook_url = 'https://hooks.slack.com/~~~'
 書き換えが終わったら、「Test」ボタンの横にある「Deploy」ボタンを押下して反映する
 
 ## 4. BacklogでWebhook設定
-![backlog_001](./assets/backlog_001.png)
+<img src="./assets/backlog_001.png" width="600px"><br>
 Backlogの「プロジェクト設定」->「インテグレーション」->「Webhook」->「設定」を押下
 
-![backlog_002](./assets/backlog_002.png)
+<img src="./assets/backlog_002.png" width="600px"><br>
 「Webhookを追加する」ボタンを押下し、以下を入力。
 Webhook名：任意
 WebHook URL：手順2で作成した関数のURL
